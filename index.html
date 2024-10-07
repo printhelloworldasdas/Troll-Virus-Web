@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página Divertida</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            background-image: url('tu-imagen-de-fondo.jpg'); /* Cambia esto por la ruta de tu imagen */
+            background-size: cover;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        #dvdLogo {
+            width: 100px; /* Ajusta el tamaño del logo */
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            animation: move 8s linear infinite;
+        }
+
+        @keyframes move {
+            0% { transform: translate(-50%, -50%) translateX(0); }
+            25% { transform: translate(-50%, -50%) translateX(calc(100vw - 100px)); }
+            50% { transform: translate(-50%, -50%) translateX(calc(100vw - 100px)) translateY(calc(100vh - 100px)); }
+            75% { transform: translate(-50%, -50%) translateX(0) translateY(calc(100vh - 100px)); }
+            100% { transform: translate(-50%, -50%) translateY(0); }
+        }
+    </style>
+</head>
+<body>
+    <audio id="backgroundMusic" autoplay loop>
+        <source src="tu-musica.mp3" type="audio/mpeg"> <!-- Cambia esto por la ruta de tu archivo de audio -->
+        Tu navegador no soporta audio HTML5.
+    </audio>
+    <img id="dvdLogo" src="tu-logo.png" alt="Logo DVD"> <!-- Cambia esto por la ruta de tu logo -->
+    <script>
+        // Abre cuatro nuevas ventanas después de un segundo
+        setTimeout(function() {
+            for (let i = 0; i < 4; i++) {
+                window.open('popup.html', '_blank', 'width=400,height=400'); // Cambia el tamaño según lo necesites
+            }
+        }, 1000);
+    </script>
+</body>
+</html>
