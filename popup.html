@@ -34,8 +34,8 @@
         // Mover la ventana
         function moverVentana() {
             // Actualiza la posición
-            x += velocidadX;
-            y += velocidadY;
+            x += velocidadX; // Movimiento horizontal
+            y += velocidadY; // Movimiento vertical
 
             // Cambia la dirección al llegar a los bordes de la pantalla
             if (x + 200 > screen.width || x < 0) {
