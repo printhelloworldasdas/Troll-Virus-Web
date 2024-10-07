@@ -25,31 +25,28 @@
     <img id="trollImage" src="https://www.hdwallpapers.net/previews/troll-face-meme-595.jpg" alt="Troll Face">
 
     <script>
-        // Mover la imagen dentro de la ventana emergente
-        let trollImage = document.getElementById('trollImage');
-        let x = Math.random() * (window.innerWidth - 50); // Posición aleatoria en X
-        let velocidadX = 3; // Velocidad horizontal
-        let anchoVentana = 200; // Ancho de la ventana
-        let anchoImagen = trollImage.width; // Ancho de la imagen
+        // Mover la ventana emergente
+        let ventana = window; // Referencia a la ventana
+        let velocidadX = 2; // Velocidad horizontal
+        let x = Math.random() * (window.screen.width - 200); // Posición inicial aleatoria
 
-        // Inicializa la posición de la imagen
-        trollImage.style.left = x + 'px';
+        // Posicionar la ventana al inicio
+        ventana.moveTo(x, Math.random() * (window.screen.height - 200));
 
-        // Mover la imagen
-        function moverImagen() {
+        // Mover la ventana
+        function moverVentana() {
             x += velocidadX;
 
-            // Cambia la dirección cuando llegue al borde de la ventana
-            if (x + anchoImagen > anchoVentana || x < 0) {
+            // Cambia la dirección cuando llegue al borde de la pantalla
+            if (x + 200 > window.screen.width || x < 0) {
                 velocidadX *= -1; // Rebote
             }
 
-            trollImage.style.left = x + 'px';
-
-            requestAnimationFrame(moverImagen); // Continúa el movimiento de manera suave
+            ventana.moveTo(x, ventana.screenY); // Mantener la posición Y actual
+            requestAnimationFrame(moverVentana); // Continúa el movimiento de manera suave
         }
 
-        moverImagen(); // Iniciar el movimiento
+        moverVentana(); // Iniciar el movimiento
     </script>
 </body>
 </html>
