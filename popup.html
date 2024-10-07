@@ -14,15 +14,14 @@
         }
 
         #trollImage {
-            width: 100px; /* Tamaño de la imagen */
-            position: absolute;
-            top: 0;
-            left: 0;
+            width: 100%; /* Tamaño de la imagen al 100% del cuadrado */
+            height: 100%; /* Altura del cuadrado */
+            object-fit: cover; /* Asegura que la imagen cubra el área sin distorsionarse */
         }
     </style>
 </head>
 <body>
-    <img id="trollImage" src="https://www.hdwallpapers.net/previews/troll-face-meme-595.jpg" alt="Troll Face">
+    <img id="trollImage" src="https://spaces-cdn.clipsafari.com/stz2jv3im7x7kvwqiyt6vsig0tlc" alt="Imagen">
 
     <script>
         // Mover la ventana emergente
