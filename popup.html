@@ -16,8 +16,8 @@
         #trollImage {
             width: 50px; /* Tamaño de la imagen */
             position: absolute;
-            top: 0;
-            left: 0;
+            top: 50%; /* Centrado verticalmente */
+            transform: translateY(-50%); /* Ajustar posición vertical */
         }
     </style>
 </head>
@@ -27,43 +27,28 @@
     <script>
         // Mover la imagen dentro de la ventana emergente
         let trollImage = document.getElementById('trollImage');
-        let x = 75; // Posición inicial en el eje X (centro de la ventana)
-        let y = 75; // Posición inicial en el eje Y (centro de la ventana)
+        let x = Math.random() * (window.innerWidth - 50); // Posición aleatoria en X
         let velocidadX = 3; // Velocidad horizontal
-        let velocidadY = 3; // Velocidad vertical
         let anchoVentana = 200; // Ancho de la ventana
-        let altoVentana = 200; // Alto de la ventana
         let anchoImagen = trollImage.width; // Ancho de la imagen
-        let altoImagen = trollImage.height; // Alto de la imagen
 
-        // Posicionar la imagen en el centro de la ventana
-        function centrarImagen() {
-            x = (anchoVentana - anchoImagen) / 2;
-            y = (altoVentana - altoImagen) / 2;
-            trollImage.style.left = x + 'px';
-            trollImage.style.top = y + 'px';
-        }
+        // Inicializa la posición de la imagen
+        trollImage.style.left = x + 'px';
 
         // Mover la imagen
         function moverImagen() {
             x += velocidadX;
-            y += velocidadY;
 
             // Cambia la dirección cuando llegue al borde de la ventana
             if (x + anchoImagen > anchoVentana || x < 0) {
-                velocidadX *= -1;
-            }
-            if (y + altoImagen > altoVentana || y < 0) {
-                velocidadY *= -1;
+                velocidadX *= -1; // Rebote
             }
 
             trollImage.style.left = x + 'px';
-            trollImage.style.top = y + 'px';
 
             requestAnimationFrame(moverImagen); // Continúa el movimiento de manera suave
         }
 
-        centrarImagen(); // Centrar la imagen
         moverImagen(); // Iniciar el movimiento
     </script>
 </body>
