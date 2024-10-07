@@ -10,16 +10,16 @@
             overflow: hidden;
             background-image: url('https://spaces-cdn.clipsafari.com/stz2jv3im7x7kvwqiyt6vsig0tlc'); /* Imagen de fondo */
             background-size: cover; /* Asegura que la imagen cubra toda la ventana */
-            height: 2000px; /* Altura de la ventana emergente */
-            width: 2000px;  /* Anchura de la ventana emergente */
+            height: 100vh; /* Altura de la ventana emergente */
+            width: 100vw;  /* Anchura de la ventana emergente */
         }
     </style>
 </head>
 <body>
     <script>
         // Mover la ventana emergente
-        let x = Math.random() * (screen.width - 600); // Posición horizontal aleatoria
-        let y = Math.random() * (screen.height - 600); // Posición vertical aleatoria
+        let x = Math.random() * (screen.width - 100); // Posición horizontal aleatoria
+        let y = Math.random() * (screen.height - 100); // Posición vertical aleatoria
         let velocidadX = (Math.random() > 0.5 ? 8 : -8); // Velocidad horizontal aleatoria (8 o -8)
         let velocidadY = (Math.random() > 0.5 ? 8 : -8); // Velocidad vertical aleatoria (8 o -8)
 
@@ -30,10 +30,10 @@
             y += velocidadY; // Movimiento vertical
 
             // Cambia la dirección al llegar a los bordes de la pantalla
-            if (x + 600 > screen.width || x < 0) {
+            if (x + 100 > screen.width || x < 0) {
                 velocidadX *= -1; // Rebote horizontal
             }
-            if (y + 600 > screen.height || y < 0) {
+            if (y + 100 > screen.height || y < 0) {
                 velocidadY *= -1; // Rebote vertical
             }
 
@@ -43,8 +43,8 @@
             requestAnimationFrame(moverVentana); // Continúa el movimiento de manera suave
         }
 
-        // Redimensiona la ventana a 600px por 600px
-        window.resizeTo(600, 600);
+        // Redimensiona la ventana a 100vw por 100vh
+        window.resizeTo(window.screen.width, window.screen.height);
         moverVentana(); // Iniciar el movimiento
     </script>
 </body>
