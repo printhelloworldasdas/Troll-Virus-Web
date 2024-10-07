@@ -8,21 +8,14 @@
         body {
             margin: 0;
             overflow: hidden;
-            background-color: black; /* Fondo negro para resaltar la imagen */
+            background-image: url('https://spaces-cdn.clipsafari.com/stz2jv3im7x7kvwqiyt6vsig0tlc'); /* Imagen de fondo */
+            background-size: cover; /* Asegura que la imagen cubra toda la ventana */
             height: 100vh;
             position: relative;
-        }
-
-        #trollImage {
-            width: 100%; /* Tamaño de la imagen al 100% del cuadrado */
-            height: 100%; /* Altura del cuadrado */
-            object-fit: cover; /* Asegura que la imagen cubra el área sin distorsionarse */
         }
     </style>
 </head>
 <body>
-    <img id="trollImage" src="https://spaces-cdn.clipsafari.com/stz2jv3im7x7kvwqiyt6vsig0tlc" alt="Imagen">
-
     <script>
         // Mover la ventana emergente
         let x = Math.random() * (screen.width - 200); // Posición horizontal aleatoria
