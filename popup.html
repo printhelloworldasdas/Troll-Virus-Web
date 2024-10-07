@@ -3,42 +3,48 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Página Divertida</title>
+    <title>Ventana Emergente</title>
     <style>
         body {
             margin: 0;
             overflow: hidden;
-            background-image: url('https://www.hdwallpapers.net/previews/troll-face-meme-595.jpg'); /* Imagen de fondo */
+            background-image: url('https://spaces-cdn.clipsafari.com/stz2jv3im7x7kvwqiyt6vsig0tlc'); /* Imagen de fondo */
             background-size: cover; /* Cubre toda la ventana */
-            background-position: center; /* Centra la imagen */
-            background-repeat: no-repeat; /* Evita que la imagen se repita */
-            height: 100vh; /* Ocupa toda la altura de la ventana */
-            width: 100vw; /* Ocupa todo el ancho de la ventana */
+            height: 100vh; /* Altura de la ventana */
+            width: 100vw; /* Ancho de la ventana */
+            position: relative;
         }
     </style>
 </head>
 <body>
-    <audio id="backgroundMusic" autoplay loop>
-        <source src="tu-musica.mp3" type="audio/mpeg"> <!-- Cambia esto por la ruta de tu archivo de audio -->
-        Tu navegador no soporta audio HTML5.
-    </audio>
-
     <script>
-        let ventanasAbiertas = 0; // Contador de ventanas abiertas
+        // Posición aleatoria inicial
+        let x = Math.random() * (window.innerWidth - 300); // Posición horizontal aleatoria
+        let y = Math.random() * (window.innerHeight - 300); // Posición vertical aleatoria
+        let velocidadX = (Math.random() > 0.5 ? 8 : -8); // Velocidad horizontal aleatoria (8 o -8)
+        let velocidadY = (Math.random() > 0.5 ? 8 : -8); // Velocidad vertical aleatoria (8 o -8)
 
-        // Abre cuatro ventanas emergentes
-        setTimeout(function() {
-            for (let i = 0; i < 4; i++) {
-                if (ventanasAbiertas < 4) { // Verifica si hay menos de 4 ventanas abiertas
-                    let ventana = window.open('popup.html', '_blank', 'width=300,height=300');
-                    if (ventana) {
-                        ventanasAbiertas++; // Incrementa el contador solo si se abre la ventana
-                    } else {
-                        alert("Permite las ventanas emergentes para ver el efecto.");
-                    }
-                }
+        // Mover la ventana
+        function moverVentana() {
+            // Actualiza la posición
+            x += velocidadX; // Movimiento horizontal
+            y += velocidadY; // Movimiento vertical
+
+            // Cambia la dirección al llegar a los bordes de la pantalla
+            if (x + 300 > window.innerWidth || x < 0) {
+                velocidadX *= -1; // Rebote horizontal
             }
-        }, 1000);
+            if (y + 300 > window.innerHeight || y < 0) {
+                velocidadY *= -1; // Rebote vertical
+            }
+
+            // Mueve la ventana a la nueva posición
+            window.moveTo(x, y);
+
+            requestAnimationFrame(moverVentana); // Continúa el movimiento de manera suave
+        }
+
+        moverVentana(); // Iniciar el movimiento
     </script>
 </body>
 </html>
