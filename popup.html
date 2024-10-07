@@ -29,12 +29,11 @@
         let ventana = window; // Referencia a la ventana
         let velocidadX = 2; // Velocidad horizontal
         let x = Math.random() * (window.screen.width - 200); // Posición inicial aleatoria
-
-        // Posicionar la ventana al inicio
-        ventana.moveTo(x, Math.random() * (window.screen.height - 200));
+        let y = Math.random() * (window.screen.height - 200); // Posición inicial aleatoria verticalmente
 
         // Mover la ventana
         function moverVentana() {
+            // Actualiza la posición
             x += velocidadX;
 
             // Cambia la dirección cuando llegue al borde de la pantalla
@@ -42,7 +41,7 @@
                 velocidadX *= -1; // Rebote
             }
 
-            ventana.moveTo(x, ventana.screenY); // Mantener la posición Y actual
+            ventana.moveTo(x, y); // Mover la ventana a la nueva posición
             requestAnimationFrame(moverVentana); // Continúa el movimiento de manera suave
         }
 
