@@ -1,14 +1,14 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Página Divertida</title>
+    <title>Fun Page</title>
     <style>
         body {
             margin: 0;
             overflow: hidden;
-            background-image: url('https://www.hdwallpapers.net/previews/troll-face-meme-595.jpg'); /* Imagen de fondo */
+            background-image: url('https://www.hdwallpapers.net/previews/troll-face-meme-595.jpg');
             background-size: cover;
             height: 100vh;
             display: flex;
@@ -19,20 +19,22 @@
 </head>
 <body>
     <audio id="backgroundMusic" autoplay loop>
-        <source src="tu-musica.mp3" type="audio/mpeg"> <!-- Cambia esto por la ruta de tu archivo de audio -->
-        Tu navegador no soporta audio HTML5.
+        <source src="your-music.mp3" type="audio/mpeg">
+        Your browser does not support HTML5 audio.
     </audio>
 
     <script>
-        // Abre cuatro ventanas emergentes
+        // Open four pop-up windows
         setTimeout(function() {
             for (let i = 0; i < 4; i++) {
-                let ventana = window.open('popup.html', '_blank', 'width=200,height=200');
-                if (!ventana) {
-                    alert("Permite las ventanas emergentes para ver el efecto.");
+                let windowPopup = window.open('popup.html', '_blank', 'width=200,height=200');
+                if (!windowPopup) {
+                    alert("Please allow pop-ups to see the effect.");
                 }
             }
         }, 1000);
     </script>
 </body>
+</html>
+
 </html>
