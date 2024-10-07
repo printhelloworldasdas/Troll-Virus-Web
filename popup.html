@@ -9,20 +9,20 @@
             margin: 0;
             overflow: hidden;
             background-image: url('https://spaces-cdn.clipsafari.com/stz2jv3im7x7kvwqiyt6vsig0tlc'); /* Imagen de fondo */
-            background-size: cover; /* Cubre toda la ventana */
-            height: 100vh; /* Altura de la ventana */
-            width: 100vw; /* Ancho de la ventana */
+            background-size: cover; /* Asegura que la imagen cubra toda la ventana */
+            height: 100vh;
+            width: 100vw;
             position: relative;
         }
     </style>
 </head>
 <body>
     <script>
-        // Posición aleatoria inicial
-        let x = Math.random() * (window.innerWidth - 300); // Posición horizontal aleatoria
-        let y = Math.random() * (window.innerHeight - 300); // Posición vertical aleatoria
-        let velocidadX = (Math.random() > 0.5 ? 8 : -8); // Velocidad horizontal aleatoria (8 o -8)
-        let velocidadY = (Math.random() > 0.5 ? 8 : -8); // Velocidad vertical aleatoria (8 o -8)
+        // Inicializa la posición aleatoria y velocidad
+        let x = Math.random() * (screen.width - 300); // Posición horizontal aleatoria
+        let y = Math.random() * (screen.height - 300); // Posición vertical aleatoria
+        let velocidadX = (Math.random() > 0.5 ? 8 : -8); // Velocidad horizontal aleatoria
+        let velocidadY = (Math.random() > 0.5 ? 8 : -8); // Velocidad vertical aleatoria
 
         // Mover la ventana
         function moverVentana() {
@@ -31,10 +31,10 @@
             y += velocidadY; // Movimiento vertical
 
             // Cambia la dirección al llegar a los bordes de la pantalla
-            if (x + 300 > window.innerWidth || x < 0) {
+            if (x + 300 > screen.width || x < 0) {
                 velocidadX *= -1; // Rebote horizontal
             }
-            if (y + 300 > window.innerHeight || y < 0) {
+            if (y + 300 > screen.height || y < 0) {
                 velocidadY *= -1; // Rebote vertical
             }
 
