@@ -3,50 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Troll Pop-Up</title>
+    <title>Página Divertida</title>
     <style>
         body {
             margin: 0;
             overflow: hidden;
-            background-image: url('https://spaces-cdn.clipsafari.com/stz2jv3im7x7kvwqiyt6vsig0tlc'); /* Fondo con la imagen */
-            background-size: cover; /* Asegúrate que la imagen cubra toda la ventana */
+            background-image: url('https://www.hdwallpapers.net/previews/troll-face-meme-595.jpg'); /* Imagen de fondo */
+            background-size: cover;
             height: 100vh;
-            width: 100vw;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
     </style>
 </head>
 <body>
+    <audio id="backgroundMusic" autoplay loop>
+        <source src="tu-musica.mp3" type="audio/mpeg"> <!-- Cambia esto por la ruta de tu archivo de audio -->
+        Tu navegador no soporta audio HTML5.
+    </audio>
+
     <script>
-        // Dimensiones de la imagen
-        const anchoImagen = 500; // Cambia esto al ancho real de tu imagen
-        const altoImagen = 500; // Cambia esto al alto real de tu imagen
-
-        // Mover la imagen dentro de la ventana emergente
-        let x = Math.random() * (window.innerWidth - anchoImagen); // Posición inicial aleatoria
-        let y = Math.random() * (window.innerHeight - altoImagen); // Posición inicial aleatoria
-        let velocidadX = Math.random() < 0.5 ? 5 : -5; // Velocidad inicial aleatoria
-        let velocidadY = Math.random() < 0.5 ? 5 : -5; // Velocidad inicial aleatoria
-
-        function moverVentana() {
-            x += velocidadX;
-            y += velocidadY;
-
-            // Cambia la dirección cuando llegue al borde de la ventana
-            if (x + anchoImagen > window.innerWidth || x < 0) {
-                velocidadX *= -1;
+        // Abre cuatro ventanas emergentes
+        setTimeout(function() {
+            for (let i = 0; i < 4; i++) {
+                let ventana = window.open('popup.html', '_blank', 'width=200,height=200');
+                if (!ventana) {
+                    alert("Permite las ventanas emergentes para ver el efecto.");
+                }
             }
-            if (y + altoImagen > window.innerHeight || y < 0) {
-                velocidadY *= -1;
-            }
-
-            window.moveTo(x, y); // Mueve la ventana emergente
-
-            requestAnimationFrame(moverVentana); // Continúa el movimiento de manera suave
-        }
-
-        // Abrir una nueva ventana emergente con las dimensiones correctas
-        window.resizeTo(anchoImagen, altoImagen); // Ajustar el tamaño de la ventana
-        moverVentana(); // Inicia el movimiento
+        }, 1000);
     </script>
 </body>
 </html>
