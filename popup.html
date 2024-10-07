@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ventana Emergente</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            background-image: url('tu-imagen-de-fondo.jpg'); /* Cambia esto por la ruta de tu imagen */
+            background-size: cover;
+            height: 100vh;
+            position: relative;
+        }
+
+        #dvdLogo {
+            width: 100px; /* Ajusta el tamaño del logo */
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            animation: move 4s linear infinite;
+        }
+
+        @keyframes move {
+            0% { transform: translate(-50%, -50%) translateX(0); }
+            50% { transform: translate(-50%, -50%) translateX(calc(100vw - 100px)); }
+            100% { transform: translate(-50%, -50%) translateX(0); }
+        }
+    </style>
+</head>
+<body>
+    <img id="dvdLogo" src="tu-logo.png" alt="Logo DVD"> <!-- Cambia esto por la ruta de tu logo -->
+</body>
+</html>
