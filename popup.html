@@ -8,12 +8,53 @@
         body {
             margin: 0;
             overflow: hidden;
-            background-image: url('https://www.hdwallpapers.net/previews/troll-face-meme-595.jpg'); /* Imagen de Troll Face */
-            background-size: cover;
+            background-color: black; /* Fondo negro para resaltar la imagen */
             height: 100vh;
+            position: relative;
+        }
+
+        #trollImage {
+            width: 100px; /* Tamaño de la imagen */
+            position: absolute;
+            top: 0;
+            left: 0;
         }
     </style>
 </head>
 <body>
+    <img id="trollImage" src="https://www.hdwallpapers.net/previews/troll-face-meme-595.jpg" alt="Troll Face">
+
+    <script>
+        // Mover la imagen dentro de la ventana emergente
+        let trollImage = document.getElementById('trollImage');
+        let x = 0;
+        let y = 0;
+        let velocidadX = 5;
+        let velocidadY = 5;
+        let anchoVentana = window.innerWidth;
+        let altoVentana = window.innerHeight;
+        let anchoImagen = trollImage.width;
+        let altoImagen = trollImage.height;
+
+        function moverImagen() {
+            x += velocidadX;
+            y += velocidadY;
+
+            // Cambia la dirección cuando llegue al borde de la ventana
+            if (x + anchoImagen > anchoVentana || x < 0) {
+                velocidadX *= -1;
+            }
+            if (y + altoImagen > altoVentana || y < 0) {
+                velocidadY *= -1;
+            }
+
+            trollImage.style.left = x + 'px';
+            trollImage.style.top = y + 'px';
+
+            requestAnimationFrame(moverImagen); // Continúa el movimiento de manera suave
+        }
+
+        moverImagen(); // Inicia el movimiento
+    </script>
 </body>
 </html>
