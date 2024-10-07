@@ -3,49 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ventana Emergente</title>
+    <title>Página Divertida</title>
     <style>
         body {
             margin: 0;
             overflow: hidden;
-            background-image: url('https://spaces-cdn.clipsafari.com/stz2jv3im7x7kvwqiyt6vsig0tlc'); /* Imagen de fondo */
-            background-size: cover; /* Asegura que la imagen cubra toda la ventana */
-            height: 300px; /* Altura de la ventana emergente */
-            width: 300px;  /* Anchura de la ventana emergente */
+            background-image: url('https://www.hdwallpapers.net/previews/troll-face-meme-595.jpg'); /* Imagen de fondo */
+            background-size: cover; /* Cubre toda la ventana */
+            background-position: center; /* Centra la imagen */
+            background-repeat: no-repeat; /* Evita que la imagen se repita */
+            height: 100vh; /* Ocupa toda la altura de la ventana */
+            width: 100vw; /* Ocupa todo el ancho de la ventana */
         }
     </style>
 </head>
 <body>
+    <audio id="backgroundMusic" autoplay loop>
+        <source src="tu-musica.mp3" type="audio/mpeg"> <!-- Cambia esto por la ruta de tu archivo de audio -->
+        Tu navegador no soporta audio HTML5.
+    </audio>
+
     <script>
-        // Mover la ventana emergente
-        let x = Math.random() * (screen.width - 300); // Posición horizontal aleatoria
-        let y = Math.random() * (screen.height - 300); // Posición vertical aleatoria
-        let velocidadX = (Math.random() > 0.5 ? 8 : -8); // Velocidad horizontal aleatoria (8 o -8)
-        let velocidadY = (Math.random() > 0.5 ? 8 : -8); // Velocidad vertical aleatoria (8 o -8)
-
-        // Mover la ventana
-        function moverVentana() {
-            // Actualiza la posición
-            x += velocidadX; // Movimiento horizontal
-            y += velocidadY; // Movimiento vertical
-
-            // Cambia la dirección al llegar a los bordes de la pantalla
-            if (x + 300 > screen.width || x < 0) {
-                velocidadX *= -1; // Rebote horizontal
+        // Abre cuatro ventanas emergentes
+        setTimeout(function() {
+            for (let i = 0; i < 4; i++) {
+                let ventana = window.open('popup.html', '_blank', 'width=300,height=300');
+                if (!ventana) {
+                    alert("Permite las ventanas emergentes para ver el efecto.");
+                }
             }
-            if (y + 300 > screen.height || y < 0) {
-                velocidadY *= -1; // Rebote vertical
-            }
-
-            // Mueve la ventana a la nueva posición
-            window.moveTo(x, y);
-
-            requestAnimationFrame(moverVentana); // Continúa el movimiento de manera suave
-        }
-
-        // Redimensiona la ventana a 300px por 300px
-        window.resizeTo(300, 300);
-        moverVentana(); // Iniciar el movimiento
+        }, 1000);
     </script>
 </body>
 </html>
