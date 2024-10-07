@@ -20,28 +20,35 @@
         const imageWidth = 500; // Set this to the actual width of your image
         const imageHeight = 500; // Set this to the actual height of your image
 
-        let x = Math.random() * (window.innerWidth - imageWidth);
-        let y = Math.random() * (window.innerHeight - imageHeight);
+        // Generate random initial position
+        let x = Math.random() * (window.screen.width - imageWidth);
+        let y = Math.random() * (window.screen.height - imageHeight);
+
+        // Set random speeds for movement
         let speedX = Math.random() < 0.5 ? 5 : -5;
         let speedY = Math.random() < 0.5 ? 5 : -5;
 
         function moveWindow() {
+            // Update position
             x += speedX;
             y += speedY;
 
-            if (x + imageWidth > window.innerWidth || x < 0) {
-                speedX *= -1;
+            // Check for collisions with the screen edges
+            if (x + imageWidth > window.screen.width || x < 0) {
+                speedX *= -1; // Reverse direction
             }
-            if (y + imageHeight > window.innerHeight || y < 0) {
-                speedY *= -1;
+            if (y + imageHeight > window.screen.height || y < 0) {
+                speedY *= -1; // Reverse direction
             }
 
+            // Move the pop-up window
             window.moveTo(x, y);
-            requestAnimationFrame(moveWindow);
+            requestAnimationFrame(moveWindow); // Keep moving the window
         }
 
+        // Resize the window to the dimensions of the image
         window.resizeTo(imageWidth, imageHeight);
-        moveWindow();
+        moveWindow(); // Start moving the window
     </script>
 </body>
 </html>
