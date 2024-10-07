@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -17,38 +17,38 @@
 </head>
 <body>
     <script>
-        const imageWidth = 500; // Set this to the actual width of your image
-        const imageHeight = 500; // Set this to the actual height of your image
+        const imageWidth = 200; // Reducir el ancho de la ventana a 200px
+        const imageHeight = 200; // Reducir la altura de la ventana a 200px
 
-        // Generate random initial position
+        // Generar una posición inicial aleatoria
         let x = Math.random() * (window.screen.width - imageWidth);
         let y = Math.random() * (window.screen.height - imageHeight);
 
-        // Set random speeds for movement
+        // Establecer velocidades aleatorias para el movimiento
         let speedX = Math.random() < 0.5 ? 5 : -5;
         let speedY = Math.random() < 0.5 ? 5 : -5;
 
         function moveWindow() {
-            // Update position
+            // Actualizar la posición
             x += speedX;
             y += speedY;
 
-            // Check for collisions with the screen edges
+            // Verificar colisiones con los bordes de la pantalla
             if (x + imageWidth > window.screen.width || x < 0) {
-                speedX *= -1; // Reverse direction
+                speedX *= -1; // Invertir dirección
             }
             if (y + imageHeight > window.screen.height || y < 0) {
-                speedY *= -1; // Reverse direction
+                speedY *= -1; // Invertir dirección
             }
 
-            // Move the pop-up window
+            // Mover la ventana emergente
             window.moveTo(x, y);
-            requestAnimationFrame(moveWindow); // Keep moving the window
+            requestAnimationFrame(moveWindow); // Continuar el movimiento
         }
 
-        // Resize the window to the dimensions of the image
+        // Redimensionar la ventana a 200x200 píxeles
         window.resizeTo(imageWidth, imageHeight);
-        moveWindow(); // Start moving the window
+        moveWindow(); // Iniciar el movimiento de la ventana
     </script>
 </body>
 </html>
