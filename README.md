@@ -21,6 +21,8 @@ You can either:
 
 If you enjoy this project, please give it a ⭐ star on GitHub! It helps others discover this fun experience!
 
+**🌟 Special Feature:** When this repository receives **5 stars**, I will add a feature that will create **2 new pop-up windows** each time you close one, making it even more chaotic and fun!
+
 ## 💻 Technologies Used
 
 - HTML
