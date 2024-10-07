@@ -3,36 +3,54 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ventana Emergente</title>
+    <title>Ventana Emergente Divertida</title>
     <style>
         body {
             margin: 0;
             overflow: hidden;
-            background-image: url('https://spaces-cdn.clipsafari.com/stz2jv3im7x7kvwqiyt6vsig0tlc'); /* Imagen de fondo */
-            background-size: cover; /* Asegura que la imagen cubra toda la ventana */
-            height: 800px; /* Altura de la ventana emergente */
-            width: 800px; /* Ancho de la ventana emergente */
+            background-color: #282c34; /* Fondo oscuro */
             display: flex;
             justify-content: center;
             align-items: center;
+            height: 100vh;
+        }
+
+        #popup {
+            width: 400px; /* Ancho de la ventana emergente */
+            height: 400px; /* Altura de la ventana emergente */
+            background: rgba(255, 255, 255, 0.9); /* Fondo blanco semi-transparente */
+            border-radius: 15px; /* Bordes redondeados */
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.5); /* Sombra */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
         }
 
         #trollImage {
-            width: 300px; /* Ancho de la imagen ajustado a 300px */
+            width: 90%; /* Tamaño de la imagen */
             height: auto; /* Mantiene la proporción de la imagen */
-            object-fit: cover; /* Asegura que la imagen cubra el área sin distorsionarse */
+            border-radius: 10px; /* Bordes redondeados de la imagen */
+        }
+
+        @keyframes move {
+            0% { transform: translate(0, 0); }
+            50% { transform: translate(10px, 10px); }
+            100% { transform: translate(0, 0); }
         }
     </style>
 </head>
 <body>
-    <img id="trollImage" src="https://spaces-cdn.clipsafari.com/stz2jv3im7x7kvwqiyt6vsig0tlc" alt="Imagen">
+    <div id="popup">
+        <img id="trollImage" src="https://spaces-cdn.clipsafari.com/stz2jv3im7x7kvwqiyt6vsig0tlc" alt="Troll Image">
+    </div>
 
     <script>
         // Mover la ventana emergente
-        let x = Math.random() * (screen.width - 800); // Posición horizontal aleatoria
-        let y = Math.random() * (screen.height - 800); // Posición vertical aleatoria
-        let velocidadX = (Math.random() > 0.5 ? 5 : -5); // Velocidad horizontal aleatoria (5 o -5)
-        let velocidadY = (Math.random() > 0.5 ? 5 : -5); // Velocidad vertical aleatoria (5 o -5)
+        let x = Math.random() * (screen.width - 400); // Posición horizontal aleatoria
+        let y = Math.random() * (screen.height - 400); // Posición vertical aleatoria
+        let velocidadX = (Math.random() > 0.5 ? 3 : -3); // Velocidad horizontal
+        let velocidadY = (Math.random() > 0.5 ? 3 : -3); // Velocidad vertical
 
         // Mover la ventana
         function moverVentana() {
@@ -41,16 +59,18 @@
             y += velocidadY; // Movimiento vertical
 
             // Cambia la dirección al llegar a los bordes de la pantalla
-            if (x + 800 > screen.width || x < 0) {
+            if (x + 400 > screen.width || x < 0) {
                 velocidadX *= -1; // Rebote horizontal
             }
-            if (y + 800 > screen.height || y < 0) {
+            if (y + 400 > screen.height || y < 0) {
                 velocidadY *= -1; // Rebote vertical
             }
 
             // Mueve la ventana a la nueva posición
             window.moveTo(x, y);
 
+            // Aplica animación de movimiento
+            document.getElementById('popup').style.animation = 'move 0.5s';
             requestAnimationFrame(moverVentana); // Continúa el movimiento de manera suave
         }
 
