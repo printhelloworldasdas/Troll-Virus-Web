@@ -14,24 +14,6 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            position: relative;
-        }
-
-        #dvdLogo {
-            width: 100px; /* Ajusta el tamaño del logo */
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            animation: move 8s linear infinite;
-        }
-
-        @keyframes move {
-            0% { transform: translate(-50%, -50%) translateX(0); }
-            25% { transform: translate(-50%, -50%) translateX(calc(100vw - 100px)); }
-            50% { transform: translate(-50%, -50%) translateX(calc(100vw - 100px)) translateY(calc(100vh - 100px)); }
-            75% { transform: translate(-50%, -50%) translateX(0) translateY(calc(100vh - 100px)); }
-            100% { transform: translate(-50%, -50%) translateY(0); }
         }
     </style>
 </head>
@@ -40,48 +22,13 @@
         <source src="tu-musica.mp3" type="audio/mpeg"> <!-- Cambia esto por la ruta de tu archivo de audio -->
         Tu navegador no soporta audio HTML5.
     </audio>
-    <img id="dvdLogo" src="https://www.hdwallpapers.net/previews/troll-face-meme-595.jpg" alt="Troll Face"> <!-- Imagen del meme Troll Face -->
+
     <script>
-        // Función para mover las ventanas
-        function moverVentana(ventana) {
-            let x = Math.floor(Math.random() * window.screen.availWidth);
-            let y = Math.floor(Math.random() * window.screen.availHeight);
-            let velocidadX = Math.random() * 15 + 5; // Velocidad aleatoria para el movimiento horizontal
-            let velocidadY = Math.random() * 15 + 5; // Velocidad aleatoria para el movimiento vertical
-            let pantallaAncho = window.screen.availWidth;
-            let pantallaAlto = window.screen.availHeight;
-            let anchoVentana = 400;
-            let altoVentana = 400;
-
-            function mover() {
-                x += velocidadX;
-                y += velocidadY;
-
-                // Cambia la dirección cuando llegue al borde de la pantalla
-                if (x + anchoVentana > pantallaAncho || x < 0) {
-                    velocidadX *= -1;
-                }
-                if (y + altoVentana > pantallaAlto || y < 0) {
-                    velocidadY *= -1;
-                }
-
-                // Mueve la ventana a las nuevas coordenadas
-                ventana.moveTo(x, y);
-
-                // Repite el movimiento cada 50 milisegundos
-                setTimeout(mover, 50);
-            }
-
-            mover();
-        }
-
-        // Abre cuatro ventanas y las mueve
+        // Abre cuatro ventanas emergentes
         setTimeout(function() {
             for (let i = 0; i < 4; i++) {
                 let ventana = window.open('popup.html', '_blank', 'width=400,height=400');
-                if (ventana) {
-                    moverVentana(ventana);
-                } else {
+                if (!ventana) {
                     alert("Permite las ventanas emergentes para ver el efecto.");
                 }
             }
