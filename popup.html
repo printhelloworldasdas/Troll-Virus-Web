@@ -17,25 +17,26 @@
 </head>
 <body>
     <script>
-        // Dimensiones de la imagen
+        // Dimensiones de la ventana emergente
         const anchoImagen = 500; // Cambia esto al ancho real de tu imagen
         const altoImagen = 500; // Cambia esto al alto real de tu imagen
 
-        // Mover la imagen dentro de la ventana emergente
-        let x = Math.random() * (window.innerWidth - anchoImagen); // Posición inicial aleatoria
-        let y = Math.random() * (window.innerHeight - altoImagen); // Posición inicial aleatoria
+        // Posiciones iniciales aleatorias
+        let x = Math.random() * (window.screen.availWidth - anchoImagen); // Posición inicial aleatoria
+        let y = Math.random() * (window.screen.availHeight - altoImagen); // Posición inicial aleatoria
         let velocidadX = Math.random() < 0.5 ? 5 : -5; // Velocidad inicial aleatoria
         let velocidadY = Math.random() < 0.5 ? 5 : -5; // Velocidad inicial aleatoria
 
+        // Mover la ventana emergente
         function moverVentana() {
             x += velocidadX;
             y += velocidadY;
 
-            // Cambia la dirección cuando llegue al borde de la ventana
-            if (x + anchoImagen > window.innerWidth || x < 0) {
+            // Cambia la dirección cuando llegue al borde de la pantalla
+            if (x + anchoImagen > window.screen.availWidth || x < 0) {
                 velocidadX *= -1;
             }
-            if (y + altoImagen > window.innerHeight || y < 0) {
+            if (y + altoImagen > window.screen.availHeight || y < 0) {
                 velocidadY *= -1;
             }
 
@@ -44,9 +45,12 @@
             requestAnimationFrame(moverVentana); // Continúa el movimiento de manera suave
         }
 
-        // Abrir una nueva ventana emergente con las dimensiones correctas
-        window.resizeTo(anchoImagen, altoImagen); // Ajustar el tamaño de la ventana
-        moverVentana(); // Inicia el movimiento
+        // Abrir una nueva ventana emergente con las dimensiones correctas y posición aleatoria
+        window.onload = function() {
+            window.resizeTo(anchoImagen, altoImagen); // Ajustar el tamaño de la ventana
+            window.moveTo(x, y); // Posición inicial
+            moverVentana(); // Inicia el movimiento
+        };
     </script>
 </body>
 </html>
