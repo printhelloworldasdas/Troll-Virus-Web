@@ -9,8 +9,8 @@
             margin: 0;
             overflow: hidden;
             background-image: url('https://www.hdwallpapers.net/previews/troll-face-meme-595.jpg'); /* Imagen de fondo */
-            background-size: cover; /* Asegura que la imagen cubra toda la ventana */
-            height: 100vh; /* Altura de la página principal */
+            background-size: cover;
+            height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -27,7 +27,7 @@
         // Abre cuatro ventanas emergentes
         setTimeout(function() {
             for (let i = 0; i < 4; i++) {
-                let ventana = window.open('popup.html', '_blank', 'width=300,height=300'); // Tamaño de la ventana emergente
+                let ventana = window.open('popup.html', '_blank', 'width=200,height=200');
                 if (!ventana) {
                     alert("Permite las ventanas emergentes para ver el efecto.");
                 }
