@@ -30,7 +30,7 @@
         setTimeout(function() {
             for (let i = 0; i < 4; i++) {
                 if (ventanasAbiertas < 4) { // Verifica si hay menos de 4 ventanas abiertas
-                    let ventana = window.open('popup.html', '_blank', 'width=300,height=300');
+                    let ventana = window.open('popup.html', '_blank', 'width=300,height=300'); // Ajusta el tamaño de la ventana
                     if (ventana) {
                         ventanasAbiertas++; // Incrementa el contador solo si se abre la ventana
                     } else {
