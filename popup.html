@@ -28,8 +28,8 @@
         // Mover la ventana emergente
         let x = Math.random() * (screen.width - 200); // Posición horizontal aleatoria
         let y = Math.random() * (screen.height - 200); // Posición vertical aleatoria
-        let velocidadX = 3; // Velocidad horizontal
-        let velocidadY = 3; // Velocidad vertical
+        let velocidadX = Math.random() > 0.5 ? 3 : -3; // Velocidad horizontal aleatoria (3 o -3)
+        let velocidadY = Math.random() > 0.5 ? 3 : -3; // Velocidad vertical aleatoria (3 o -3)
 
         // Mover la ventana
         function moverVentana() {
