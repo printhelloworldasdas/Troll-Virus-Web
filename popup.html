@@ -3,52 +3,54 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Troll Pop-Up</title>
+    <title>Ventana Emergente</title>
     <style>
         body {
             margin: 0;
             overflow: hidden;
-            background-image: url('https://spaces-cdn.clipsafari.com/stz2jv3im7x7kvwqiyt6vsig0tlc');
-            background-size: cover;
+            background-color: black; /* Fondo negro para resaltar la imagen */
             height: 100vh;
-            width: 100vw;
+            position: relative;
+        }
+
+        #trollImage {
+            width: 100%; /* Tamaño de la imagen al 100% del cuadrado */
+            height: 100%; /* Altura del cuadrado */
+            object-fit: cover; /* Asegura que la imagen cubra el área sin distorsionarse */
         }
     </style>
 </head>
 <body>
+    <img id="trollImage" src="https://spaces-cdn.clipsafari.com/stz2jv3im7x7kvwqiyt6vsig0tlc" alt="Imagen">
+
     <script>
-        const imageWidth = 100; // Reducir el ancho de la ventana a 200px
-        const imageHeight = 100; // Reducir la altura de la ventana a 200px
+        // Mover la ventana emergente
+        let x = Math.random() * (screen.width - 200); // Posición horizontal aleatoria
+        let y = Math.random() * (screen.height - 200); // Posición vertical aleatoria
+        let velocidadX = (Math.random() > 0.5 ? 8 : -8); // Velocidad horizontal aleatoria (8 o -8)
+        let velocidadY = (Math.random() > 0.5 ? 8 : -8); // Velocidad vertical aleatoria (8 o -8)
 
-        // Generar una posición inicial aleatoria
-        let x = Math.random() * (window.screen.width - imageWidth);
-        let y = Math.random() * (window.screen.height - imageHeight);
+        // Mover la ventana
+        function moverVentana() {
+            // Actualiza la posición
+            x += velocidadX; // Movimiento horizontal
+            y += velocidadY; // Movimiento vertical
 
-        // Establecer velocidades aleatorias para el movimiento
-        let speedX = Math.random() < 0.5 ? 5 : -5;
-        let speedY = Math.random() < 0.5 ? 5 : -5;
-
-        function moveWindow() {
-            // Actualizar la posición
-            x += speedX;
-            y += speedY;
-
-            // Verificar colisiones con los bordes de la pantalla
-            if (x + imageWidth > window.screen.width || x < 0) {
-                speedX *= -1; // Invertir dirección
+            // Cambia la dirección al llegar a los bordes de la pantalla
+            if (x + 200 > screen.width || x < 0) {
+                velocidadX *= -1; // Rebote horizontal
             }
-            if (y + imageHeight > window.screen.height || y < 0) {
-                speedY *= -1; // Invertir dirección
+            if (y + 200 > screen.height || y < 0) {
+                velocidadY *= -1; // Rebote vertical
             }
 
-            // Mover la ventana emergente
+            // Mueve la ventana a la nueva posición
             window.moveTo(x, y);
-            requestAnimationFrame(moveWindow); // Continuar el movimiento
+
+            requestAnimationFrame(moverVentana); // Continúa el movimiento de manera suave
         }
 
-        // Redimensionar la ventana a 200x200 píxeles
-        window.resizeTo(imageWidth, imageHeight);
-        moveWindow(); // Iniciar el movimiento de la ventana
+        moverVentana(); // Iniciar el movimiento
     </script>
 </body>
 </html>
