@@ -9,11 +9,11 @@
             margin: 0;
             overflow: hidden;
             background-image: url('https://www.hdwallpapers.net/previews/troll-face-meme-595.jpg'); /* Imagen de fondo */
-            background-size: cover; /* Cubre toda la ventana */
-            background-position: center; /* Centra la imagen */
-            background-repeat: no-repeat; /* Evita que la imagen se repita */
-            height: 100vh; /* Ocupa toda la altura de la ventana */
-            width: 100vw; /* Ocupa todo el ancho de la ventana */
+            background-size: cover;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
     </style>
 </head>
@@ -25,16 +25,17 @@
 
     <script>
         let ventanasAbiertas = 0; // Contador de ventanas abiertas
+        const maxVentanas = 4; // Número máximo de ventanas a abrir
 
         // Abre cuatro ventanas emergentes
         setTimeout(function() {
-            for (let i = 0; i < 4; i++) {
-                if (ventanasAbiertas < 4) { // Verifica si hay menos de 4 ventanas abiertas
-                    let ventana = window.open('popup.html', '_blank', 'width=300,height=300'); // Ajusta el tamaño de la ventana
-                    if (ventana) {
-                        ventanasAbiertas++; // Incrementa el contador solo si se abre la ventana
-                    } else {
+            for (let i = 0; i < maxVentanas; i++) {
+                if (ventanasAbiertas < maxVentanas) {
+                    let ventana = window.open('popup.html', '_blank', 'width=300,height=300');
+                    if (!ventana) {
                         alert("Permite las ventanas emergentes para ver el efecto.");
+                    } else {
+                        ventanasAbiertas++; // Incrementa el contador si la ventana se abrió con éxito
                     }
                 }
             }
