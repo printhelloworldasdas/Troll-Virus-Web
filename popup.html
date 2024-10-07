@@ -10,16 +10,16 @@
             overflow: hidden;
             background-image: url('https://spaces-cdn.clipsafari.com/stz2jv3im7x7kvwqiyt6vsig0tlc'); /* Imagen de fondo */
             background-size: cover; /* Asegura que la imagen cubra toda la ventana */
-            height: 400px; /* Altura de la ventana emergente */
-            width: 400px;  /* Anchura de la ventana emergente */
+            height: 100vh;
+            position: relative;
         }
     </style>
 </head>
 <body>
     <script>
         // Mover la ventana emergente
-        let x = Math.random() * (screen.width - 400); // Posición horizontal aleatoria
-        let y = Math.random() * (screen.height - 400); // Posición vertical aleatoria
+        let x = Math.random() * (screen.width - 200); // Posición horizontal aleatoria
+        let y = Math.random() * (screen.height - 200); // Posición vertical aleatoria
         let velocidadX = (Math.random() > 0.5 ? 8 : -8); // Velocidad horizontal aleatoria (8 o -8)
         let velocidadY = (Math.random() > 0.5 ? 8 : -8); // Velocidad vertical aleatoria (8 o -8)
 
@@ -30,10 +30,10 @@
             y += velocidadY; // Movimiento vertical
 
             // Cambia la dirección al llegar a los bordes de la pantalla
-            if (x + 400 > screen.width || x < 0) {
+            if (x + 200 > screen.width || x < 0) {
                 velocidadX *= -1; // Rebote horizontal
             }
-            if (y + 400 > screen.height || y < 0) {
+            if (y + 200 > screen.height || y < 0) {
                 velocidadY *= -1; // Rebote vertical
             }
 
@@ -43,8 +43,6 @@
             requestAnimationFrame(moverVentana); // Continúa el movimiento de manera suave
         }
 
-        // Redimensiona la ventana a 400px por 400px
-        window.resizeTo(400, 400);
         moverVentana(); // Iniciar el movimiento
     </script>
 </body>
