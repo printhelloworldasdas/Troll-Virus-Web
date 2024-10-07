@@ -14,7 +14,7 @@ Welcome to **Troll Virus**! This fun project opens multiple pop-up windows that 
 
 You can either:
 - **Click the link** below to access the project directly:  
-  [Troll Virus Demo]([https://your-link-to-the-project](https://printhelloworldasdas.github.io/Troll-Web/))
+  [Troll Virus Demo](https://printhelloworldasdas.github.io/Troll-Web/)
 - **Download** the project files and run `index.html` locally.
 
 ## ⭐ Star the Project
