@@ -8,16 +8,17 @@
         body {
             margin: 0;
             overflow: hidden;
-            background-color: black; /* Fondo negro para resaltar la imagen */
-            height: 300px; /* Altura de la ventana emergente */
-            width: 300px; /* Ancho de la ventana emergente */
+            background-image: url('https://spaces-cdn.clipsafari.com/stz2jv3im7x7kvwqiyt6vsig0tlc'); /* Imagen de fondo */
+            background-size: cover; /* Asegura que la imagen cubra toda la ventana */
+            height: 400px; /* Altura de la ventana emergente */
+            width: 400px; /* Ancho de la ventana emergente */
             display: flex;
             justify-content: center;
             align-items: center;
         }
 
         #trollImage {
-            width: 100px; /* Ancho de la imagen ajustado a 100px */
+            width: 150px; /* Ancho de la imagen ajustado a 150px */
             height: auto; /* Mantiene la proporción de la imagen */
             object-fit: cover; /* Asegura que la imagen cubra el área sin distorsionarse */
         }
@@ -28,8 +29,8 @@
 
     <script>
         // Mover la ventana emergente
-        let x = Math.random() * (screen.width - 300); // Posición horizontal aleatoria
-        let y = Math.random() * (screen.height - 300); // Posición vertical aleatoria
+        let x = Math.random() * (screen.width - 400); // Posición horizontal aleatoria
+        let y = Math.random() * (screen.height - 400); // Posición vertical aleatoria
         let velocidadX = (Math.random() > 0.5 ? 5 : -5); // Velocidad horizontal aleatoria (5 o -5)
         let velocidadY = (Math.random() > 0.5 ? 5 : -5); // Velocidad vertical aleatoria (5 o -5)
 
@@ -40,10 +41,10 @@
             y += velocidadY; // Movimiento vertical
 
             // Cambia la dirección al llegar a los bordes de la pantalla
-            if (x + 300 > screen.width || x < 0) {
+            if (x + 400 > screen.width || x < 0) {
                 velocidadX *= -1; // Rebote horizontal
             }
-            if (y + 300 > screen.height || y < 0) {
+            if (y + 400 > screen.height || y < 0) {
                 velocidadY *= -1; // Rebote vertical
             }
 
