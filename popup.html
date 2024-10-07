@@ -14,7 +14,7 @@
         }
 
         #trollImage {
-            width: 100px; /* Tamaño de la imagen */
+            width: 50px; /* Tamaño de la imagen */
             position: absolute;
             top: 0;
             left: 0;
@@ -27,15 +27,24 @@
     <script>
         // Mover la imagen dentro de la ventana emergente
         let trollImage = document.getElementById('trollImage');
-        let x = 0;
-        let y = 0;
-        let velocidadX = 5;
-        let velocidadY = 5;
-        let anchoVentana = window.innerWidth;
-        let altoVentana = window.innerHeight;
-        let anchoImagen = trollImage.width;
-        let altoImagen = trollImage.height;
+        let x = 75; // Posición inicial en el eje X (centro de la ventana)
+        let y = 75; // Posición inicial en el eje Y (centro de la ventana)
+        let velocidadX = 3; // Velocidad horizontal
+        let velocidadY = 3; // Velocidad vertical
+        let anchoVentana = 200; // Ancho de la ventana
+        let altoVentana = 200; // Alto de la ventana
+        let anchoImagen = trollImage.width; // Ancho de la imagen
+        let altoImagen = trollImage.height; // Alto de la imagen
 
+        // Posicionar la imagen en el centro de la ventana
+        function centrarImagen() {
+            x = (anchoVentana - anchoImagen) / 2;
+            y = (altoVentana - altoImagen) / 2;
+            trollImage.style.left = x + 'px';
+            trollImage.style.top = y + 'px';
+        }
+
+        // Mover la imagen
         function moverImagen() {
             x += velocidadX;
             y += velocidadY;
@@ -54,7 +63,8 @@
             requestAnimationFrame(moverImagen); // Continúa el movimiento de manera suave
         }
 
-        moverImagen(); // Inicia el movimiento
+        centrarImagen(); // Centrar la imagen
+        moverImagen(); // Iniciar el movimiento
     </script>
 </body>
 </html>
