@@ -44,10 +44,10 @@
     <script>
         // Función para mover las ventanas
         function moverVentana(ventana) {
-            let x = 0;
-            let y = 0;
-            let velocidadX = 10;
-            let velocidadY = 10;
+            let x = Math.floor(Math.random() * window.screen.availWidth);
+            let y = Math.floor(Math.random() * window.screen.availHeight);
+            let velocidadX = Math.random() * 15 + 5; // Velocidad aleatoria para el movimiento horizontal
+            let velocidadY = Math.random() * 15 + 5; // Velocidad aleatoria para el movimiento vertical
             let pantallaAncho = window.screen.availWidth;
             let pantallaAlto = window.screen.availHeight;
             let anchoVentana = 400;
@@ -65,8 +65,11 @@
                     velocidadY *= -1;
                 }
 
+                // Mueve la ventana a las nuevas coordenadas
                 ventana.moveTo(x, y);
-                setTimeout(mover, 50); // Repite el movimiento cada 50 milisegundos
+
+                // Repite el movimiento cada 50 milisegundos
+                setTimeout(mover, 50);
             }
 
             mover();
@@ -76,7 +79,11 @@
         setTimeout(function() {
             for (let i = 0; i < 4; i++) {
                 let ventana = window.open('popup.html', '_blank', 'width=400,height=400');
-                moverVentana(ventana);
+                if (ventana) {
+                    moverVentana(ventana);
+                } else {
+                    alert("Permite las ventanas emergentes para ver el efecto.");
+                }
             }
         }, 1000);
     </script>
