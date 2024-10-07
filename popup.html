@@ -1,47 +1,49 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Troll Pop-Up</title>
+    <title>Ventana Emergente</title>
     <style>
         body {
             margin: 0;
             overflow: hidden;
-            background-image: url('https://spaces-cdn.clipsafari.com/stz2jv3im7x7kvwqiyt6vsig0tlc');
-            background-size: cover;
+            background-image: url('https://spaces-cdn.clipsafari.com/stz2jv3im7x7kvwqiyt6vsig0tlc'); /* Imagen de fondo */
+            background-size: cover; /* Asegura que la imagen cubra toda la ventana */
             height: 100vh;
-            width: 100vw;
+            position: relative;
         }
     </style>
 </head>
 <body>
     <script>
-        const imageWidth = 500; // Change this to the actual width of your image
-        const imageHeight = 500; // Change this to the actual height of your image
+        // Mover la ventana emergente
+        let x = Math.random() * (screen.width - 200); // Posición horizontal aleatoria
+        let y = Math.random() * (screen.height - 200); // Posición vertical aleatoria
+        let velocidadX = (Math.random() > 0.5 ? 8 : -8); // Velocidad horizontal aleatoria (8 o -8)
+        let velocidadY = (Math.random() > 0.5 ? 8 : -8); // Velocidad vertical aleatoria (8 o -8)
 
-        let x = Math.random() * (window.innerWidth - imageWidth);
-        let y = Math.random() * (window.innerHeight - imageHeight);
-        let speedX = Math.random() < 0.5 ? 5 : -5;
-        let speedY = Math.random() < 0.5 ? 5 : -5;
+        // Mover la ventana
+        function moverVentana() {
+            // Actualiza la posición
+            x += velocidadX; // Movimiento horizontal
+            y += velocidadY; // Movimiento vertical
 
-        function moveWindow() {
-            x += speedX;
-            y += speedY;
-
-            if (x + imageWidth > window.innerWidth || x < 0) {
-                speedX *= -1;
+            // Cambia la dirección al llegar a los bordes de la pantalla
+            if (x + 200 > screen.width || x < 0) {
+                velocidadX *= -1; // Rebote horizontal
             }
-            if (y + imageHeight > window.innerHeight || y < 0) {
-                speedY *= -1;
+            if (y + 200 > screen.height || y < 0) {
+                velocidadY *= -1; // Rebote vertical
             }
 
+            // Mueve la ventana a la nueva posición
             window.moveTo(x, y);
-            requestAnimationFrame(moveWindow);
+
+            requestAnimationFrame(moverVentana); // Continúa el movimiento de manera suave
         }
 
-        window.resizeTo(imageWidth, imageHeight);
-        moveWindow();
+        moverVentana(); // Iniciar el movimiento
     </script>
 </body>
 </html>
