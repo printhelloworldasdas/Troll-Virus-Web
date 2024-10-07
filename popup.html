@@ -14,10 +14,10 @@
         }
 
         #trollImage {
-            width: 50px; /* Tamaño de la imagen */
+            width: 100px; /* Tamaño de la imagen */
             position: absolute;
-            top: 50%; /* Centrado verticalmente */
-            transform: translateY(-50%); /* Ajustar posición vertical */
+            top: 0;
+            left: 0;
         }
     </style>
 </head>
@@ -26,22 +26,28 @@
 
     <script>
         // Mover la ventana emergente
-        let ventana = window; // Referencia a la ventana
-        let velocidadX = 2; // Velocidad horizontal
-        let x = Math.random() * (window.screen.width - 200); // Posición inicial aleatoria
-        let y = Math.random() * (window.screen.height - 200); // Posición inicial aleatoria verticalmente
+        let x = Math.random() * (screen.width - 200); // Posición horizontal aleatoria
+        let y = Math.random() * (screen.height - 200); // Posición vertical aleatoria
+        let velocidadX = 3; // Velocidad horizontal
+        let velocidadY = 3; // Velocidad vertical
 
         // Mover la ventana
         function moverVentana() {
             // Actualiza la posición
             x += velocidadX;
+            y += velocidadY;
 
-            // Cambia la dirección cuando llegue al borde de la pantalla
-            if (x + 200 > window.screen.width || x < 0) {
-                velocidadX *= -1; // Rebote
+            // Cambia la dirección al llegar a los bordes de la pantalla
+            if (x + 200 > screen.width || x < 0) {
+                velocidadX *= -1; // Rebote horizontal
+            }
+            if (y + 200 > screen.height || y < 0) {
+                velocidadY *= -1; // Rebote vertical
             }
 
-            ventana.moveTo(x, y); // Mover la ventana a la nueva posición
+            // Mueve la ventana a la nueva posición
+            window.moveTo(x, y);
+
             requestAnimationFrame(moverVentana); // Continúa el movimiento de manera suave
         }
 
