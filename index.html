@@ -42,10 +42,41 @@
     </audio>
     <img id="dvdLogo" src="https://www.hdwallpapers.net/previews/troll-face-meme-595.jpg" alt="Troll Face"> <!-- Imagen del meme Troll Face -->
     <script>
-        // Abre cuatro nuevas ventanas después de un segundo
+        // Función para mover las ventanas
+        function moverVentana(ventana) {
+            let x = 0;
+            let y = 0;
+            let velocidadX = 10;
+            let velocidadY = 10;
+            let pantallaAncho = window.screen.availWidth;
+            let pantallaAlto = window.screen.availHeight;
+            let anchoVentana = 400;
+            let altoVentana = 400;
+
+            function mover() {
+                x += velocidadX;
+                y += velocidadY;
+
+                // Cambia la dirección cuando llegue al borde de la pantalla
+                if (x + anchoVentana > pantallaAncho || x < 0) {
+                    velocidadX *= -1;
+                }
+                if (y + altoVentana > pantallaAlto || y < 0) {
+                    velocidadY *= -1;
+                }
+
+                ventana.moveTo(x, y);
+                setTimeout(mover, 50); // Repite el movimiento cada 50 milisegundos
+            }
+
+            mover();
+        }
+
+        // Abre cuatro ventanas y las mueve
         setTimeout(function() {
             for (let i = 0; i < 4; i++) {
-                window.open('popup.html', '_blank', 'width=400,height=400'); // Cambia el tamaño según lo necesites
+                let ventana = window.open('popup.html', '_blank', 'width=400,height=400');
+                moverVentana(ventana);
             }
         }, 1000);
     </script>
