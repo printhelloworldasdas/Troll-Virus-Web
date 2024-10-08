@@ -3,61 +3,60 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ventana Emergente Divertida</title>
+    <title>Página Principal</title>
     <style>
         body {
             margin: 0;
-            overflow: hidden;
-            background-color: white; /* Fondo blanco para resaltar el pop-up */
+            height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
-        }
-
-        #popup {
-            width: 600px; /* Ancho de la ventana emergente */
-            height: 600px; /* Altura de la ventana emergente */
-            background-image: url('photos/Trollface.png'); /* Ruta local a la imagen */
-            background-size: cover; /* Asegura que la imagen cubra todo el div */
-            background-position: center; /* Centra la imagen */
-            border-radius: 15px; /* Bordes redondeados */
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.5); /* Sombra */
-            position: relative;
+            background-color: #f0f0f0;
         }
     </style>
 </head>
 <body>
-    <div id="popup"></div> <!-- Contenedor vacío para la ventana emergente -->
+    <h1>Ventana Principal</h1>
 
     <script>
-        // Mover la ventana emergente
-        let x = Math.random() * (window.innerWidth - 600); // Posición horizontal aleatoria
-        let y = Math.random() * (window.innerHeight - 600); // Posición vertical aleatoria
-        let velocidadX = (Math.random() > 0.5 ? 3 : -3); // Velocidad horizontal
-        let velocidadY = (Math.random() > 0.5 ? 3 : -3); // Velocidad vertical
+        // Abrir una ventana emergente
+        function abrirVentanaEmergente() {
+            let ventana = window.open('popup.html', '', 'width=600,height=600');
 
-        // Mover la ventana
-        function moverVentana() {
-            // Actualiza la posición
-            x += velocidadX; // Movimiento horizontal
-            y += velocidadY; // Movimiento vertical
+            if (ventana) {
+                // Mover la ventana emergente
+                let x = Math.random() * (screen.width - 600); // Posición horizontal aleatoria
+                let y = Math.random() * (screen.height - 600); // Posición vertical aleatoria
+                let velocidadX = (Math.random() > 0.5 ? 3 : -3); // Velocidad horizontal
+                let velocidadY = (Math.random() > 0.5 ? 3 : -3); // Velocidad vertical
 
-            // Cambia la dirección al llegar a los bordes de la pantalla visible
-            if (x + 600 > window.innerWidth || x < 0) {
-                velocidadX *= -1; // Rebote horizontal
+                function moverVentana() {
+                    // Actualiza la posición
+                    x += velocidadX;
+                    y += velocidadY;
+
+                    // Rebote en los bordes de la pantalla
+                    if (x + 600 > screen.width || x < 0) {
+                        velocidadX *= -1;
+                    }
+                    if (y + 600 > screen.height || y < 0) {
+                        velocidadY *= -1;
+                    }
+
+                    // Mover la ventana emergente a la nueva posición
+                    ventana.moveTo(x, y);
+
+                    requestAnimationFrame(moverVentana); // Continuar moviendo la ventana
+                }
+
+                moverVentana(); // Iniciar el movimiento
+            } else {
+                alert("Permite las ventanas emergentes para ver el efecto.");
             }
-            if (y + 600 > window.innerHeight || y < 0) {
-                velocidadY *= -1; // Rebote vertical
-            }
-
-            // Mueve el pop-up a la nueva posición
-            document.getElementById('popup').style.transform = `translate(${x}px, ${y}px)`;
-
-            requestAnimationFrame(moverVentana); // Continúa el movimiento de manera suave
         }
 
-        moverVentana(); // Iniciar el movimiento
+        // Abrir la ventana emergente después de cargar la página
+        abrirVentanaEmergente();
     </script>
 </body>
 </html>
