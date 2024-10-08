@@ -18,13 +18,13 @@
     </style>
 </head>
 <body>
-    <audio id="backgroundMusic" autoplay loop>
-        <source src="Eduard Khil - Trololo Song [HD].mp3" type="audio/mpeg">
+    <audio id="backgroundMusic" loop>
+        <source src="photos/Eduard Khil - Trololo Song [HD].mp3" type="audio/mpeg">
         Tu navegador no soporta audio HTML5.
     </audio>
 
     <script>
-        // Esperar a que el usuario interactúe con la página
+        // Esperar a que el usuario haga clic para reproducir la música
         document.body.addEventListener('click', function() {
             const audio = document.getElementById('backgroundMusic');
             audio.play(); // Reproduce la música al hacer clic
