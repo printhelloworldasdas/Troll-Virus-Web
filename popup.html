@@ -8,7 +8,7 @@
         body {
             margin: 0;
             overflow: hidden;
-            background-color: white; /* Fondo blanco */
+            background-color: transparent; /* Fondo transparente para mostrar la imagen */
             display: flex;
             justify-content: center;
             align-items: center;
@@ -16,49 +16,54 @@
         }
 
         #popup {
-            width: 300px; /* Ancho de la ventana emergente */
-            height: 300px; /* Altura de la ventana emergente */
-            background-image: url('photos/Trollface.png'); /* Ruta a la imagen local */
+            width: 600px; /* Ancho de la ventana emergente */
+            height: 600px; /* Altura de la ventana emergente */
+            background-image: url('photos/Trollface.png'); /* Imagen Trollface */
             background-size: cover; /* Asegura que la imagen cubra todo el div */
             background-position: center; /* Centra la imagen */
             border-radius: 15px; /* Bordes redondeados */
             box-shadow: 0 0 15px rgba(0, 0, 0, 0.5); /* Sombra */
-            position: absolute; /* Posición absoluta para mover el div */
+            position: absolute; /* Necesario para mover la ventana */
         }
     </style>
 </head>
 <body>
-    <div id="popup"></div>
+    <div id="popup"></div> <!-- Contenedor para la ventana emergente -->
 
     <script>
-        // Dimensiones de la ventana emergente
-        const popupSize = 300;
-
-        // Posición y velocidad inicial aleatoria
-        let x = Math.random() * (window.innerWidth - popupSize);
-        let y = Math.random() * (window.innerHeight - popupSize);
-        let velocidadX = (Math.random() > 0.5 ? 5 : -5); // Velocidad horizontal aleatoria
-        let velocidadY = (Math.random() > 0.5 ? 5 : -5); // Velocidad vertical aleatoria
-
         const popup = document.getElementById('popup');
-        
-        // Función que mueve la ventana emergente
+        let velocidadX = (Math.random() > 0.5 ? 2 : -2); // Velocidad horizontal
+        let velocidadY = (Math.random() > 0.5 ? 2 : -2); // Velocidad vertical
+
+        // Posicion inicial aleatoria
+        let x = Math.random() * (window.innerWidth - 600); // Posición horizontal inicial
+        let y = Math.random() * (window.innerHeight - 600); // Posición vertical inicial
+
+        // Establecer la posición inicial
+        popup.style.left = x + 'px';
+        popup.style.top = y + 'px';
+
+        // Función para mover la ventana emergente
         function moverVentana() {
-            x += velocidadX;
-            y += velocidadY;
+            // Actualiza la posición
+            x += velocidadX; // Movimiento horizontal
+            y += velocidadY; // Movimiento vertical
 
-            // Cambiar dirección al tocar los bordes del monitor
-            if (x + popupSize > window.innerWidth || x < 0) {
+            // Cambia la dirección al llegar a los bordes de la pantalla
+            if (x + popup.offsetWidth >= window.innerWidth || x < 0) {
                 velocidadX *= -1; // Rebote horizontal
+                x = Math.max(0, Math.min(window.innerWidth - popup.offsetWidth, x)); // Asegura que x no se salga
             }
-            if (y + popupSize > window.innerHeight || y < 0) {
+            if (y + popup.offsetHeight >= window.innerHeight || y < 0) {
                 velocidadY *= -1; // Rebote vertical
+                y = Math.max(0, Math.min(window.innerHeight - popup.offsetHeight, y)); // Asegura que y no se salga
             }
 
-            // Mueve el popup
-            popup.style.transform = `translate(${x}px, ${y}px)`;
+            // Actualiza la posición del popup
+            popup.style.left = x + 'px';
+            popup.style.top = y + 'px';
 
-            requestAnimationFrame(moverVentana); // Sigue moviendo el popup
+            requestAnimationFrame(moverVentana); // Continúa el movimiento de manera suave
         }
 
         moverVentana(); // Iniciar el movimiento
