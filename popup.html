@@ -23,7 +23,6 @@
             background-position: center; /* Centra la imagen */
             border-radius: 15px; /* Bordes redondeados */
             box-shadow: 0 0 15px rgba(0, 0, 0, 0.5); /* Sombra */
-            position: absolute; /* Necesario para mover la ventana */
         }
     </style>
 </head>
@@ -31,17 +30,11 @@
     <div id="popup"></div> <!-- Contenedor para la ventana emergente -->
 
     <script>
-        const popup = document.getElementById('popup');
-        let velocidadX = (Math.random() > 0.5 ? 2 : -2); // Velocidad horizontal
-        let velocidadY = (Math.random() > 0.5 ? 2 : -2); // Velocidad vertical
-
-        // Posición inicial aleatoria
-        let x = Math.random() * (window.innerWidth - 600); // Posición horizontal inicial
-        let y = Math.random() * (window.innerHeight - 600); // Posición vertical inicial
-
-        // Establecer la posición inicial
-        popup.style.left = x + 'px';
-        popup.style.top = y + 'px';
+        // Posiciones y velocidades iniciales
+        let x = Math.random() * (screen.width - 600); // Posición horizontal inicial
+        let y = Math.random() * (screen.height - 600); // Posición vertical inicial
+        let velocidadX = (Math.random() > 0.5 ? 3 : -3); // Velocidad horizontal
+        let velocidadY = (Math.random() > 0.5 ? 3 : -3); // Velocidad vertical
 
         // Función para mover la ventana emergente
         function moverVentana() {
@@ -50,17 +43,15 @@
             y += velocidadY; // Movimiento vertical
 
             // Cambia la dirección al llegar a los bordes de la pantalla
-            if (x + popup.offsetWidth >= window.innerWidth || x < 0) {
+            if (x + 600 > screen.width || x < 0) {
                 velocidadX *= -1; // Rebote horizontal
-                x = Math.max(0, Math.min(window.innerWidth - popup.offsetWidth, x)); // Asegura que x no se salga
             }
-            if (y + popup.offsetHeight >= window.innerHeight || y < 0) {
+            if (y + 600 > screen.height || y < 0) {
                 velocidadY *= -1; // Rebote vertical
-                y = Math.max(0, Math.min(window.innerHeight - popup.offsetHeight, y)); // Asegura que y no se salga
             }
 
-            // Actualiza la posición del popup
-            window.moveTo(x, y); // Mueve la ventana emergente a la nueva posición
+            // Mueve la ventana a la nueva posición
+            window.moveTo(x, y);
 
             requestAnimationFrame(moverVentana); // Continúa el movimiento de manera suave
         }
