@@ -32,8 +32,8 @@
 
     <script>
         // Mover la ventana emergente
-        let x = Math.random() * (screen.width - 600); // Posición horizontal aleatoria
-        let y = Math.random() * (screen.height - 600); // Posición vertical aleatoria
+        let x = Math.random() * (window.innerWidth - 600); // Posición horizontal aleatoria
+        let y = Math.random() * (window.innerHeight - 600); // Posición vertical aleatoria
         let velocidadX = (Math.random() > 0.5 ? 3 : -3); // Velocidad horizontal
         let velocidadY = (Math.random() > 0.5 ? 3 : -3); // Velocidad vertical
 
@@ -43,16 +43,16 @@
             x += velocidadX; // Movimiento horizontal
             y += velocidadY; // Movimiento vertical
 
-            // Cambia la dirección al llegar a los bordes de la pantalla
-            if (x + 600 > screen.width || x < 0) {
+            // Cambia la dirección al llegar a los bordes de la pantalla visible
+            if (x + 600 > window.innerWidth || x < 0) {
                 velocidadX *= -1; // Rebote horizontal
             }
-            if (y + 600 > screen.height || y < 0) {
+            if (y + 600 > window.innerHeight || y < 0) {
                 velocidadY *= -1; // Rebote vertical
             }
 
-            // Mueve la ventana a la nueva posición
-            window.moveTo(x, y);
+            // Mueve el pop-up a la nueva posición
+            document.getElementById('popup').style.transform = `translate(${x}px, ${y}px)`;
 
             requestAnimationFrame(moverVentana); // Continúa el movimiento de manera suave
         }
