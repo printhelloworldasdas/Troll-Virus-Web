@@ -29,6 +29,7 @@
             const audio = document.getElementById('backgroundMusic');
             audio.play().catch(function(error) {
                 console.log("Error al reproducir la música: ", error);
+                alert("La música no se pudo reproducir automáticamente. Por favor, haz clic en la página para reproducirla.");
             });
         };
 
