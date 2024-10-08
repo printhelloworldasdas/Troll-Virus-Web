@@ -3,60 +3,65 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Página Principal</title>
+    <title>Ventana Emergente Divertida</title>
     <style>
         body {
             margin: 0;
-            height: 100vh;
+            overflow: hidden;
+            background-color: white; /* Fondo blanco */
             display: flex;
             justify-content: center;
             align-items: center;
-            background-color: #f0f0f0;
+            height: 100vh;
+        }
+
+        #popup {
+            width: 300px; /* Ancho de la ventana emergente */
+            height: 300px; /* Altura de la ventana emergente */
+            background-image: url('photos/Trollface.png'); /* Ruta a la imagen local */
+            background-size: cover; /* Asegura que la imagen cubra todo el div */
+            background-position: center; /* Centra la imagen */
+            border-radius: 15px; /* Bordes redondeados */
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.5); /* Sombra */
+            position: absolute; /* Posición absoluta para mover el div */
         }
     </style>
 </head>
 <body>
-    <h1>Ventana Principal</h1>
+    <div id="popup"></div>
 
     <script>
-        // Abrir una ventana emergente
-        function abrirVentanaEmergente() {
-            let ventana = window.open('popup.html', '', 'width=600,height=600');
+        // Dimensiones de la ventana emergente
+        const popupSize = 300;
 
-            if (ventana) {
-                // Mover la ventana emergente
-                let x = Math.random() * (screen.width - 600); // Posición horizontal aleatoria
-                let y = Math.random() * (screen.height - 600); // Posición vertical aleatoria
-                let velocidadX = (Math.random() > 0.5 ? 3 : -3); // Velocidad horizontal
-                let velocidadY = (Math.random() > 0.5 ? 3 : -3); // Velocidad vertical
+        // Posición y velocidad inicial aleatoria
+        let x = Math.random() * (window.innerWidth - popupSize);
+        let y = Math.random() * (window.innerHeight - popupSize);
+        let velocidadX = (Math.random() > 0.5 ? 5 : -5); // Velocidad horizontal aleatoria
+        let velocidadY = (Math.random() > 0.5 ? 5 : -5); // Velocidad vertical aleatoria
 
-                function moverVentana() {
-                    // Actualiza la posición
-                    x += velocidadX;
-                    y += velocidadY;
+        const popup = document.getElementById('popup');
+        
+        // Función que mueve la ventana emergente
+        function moverVentana() {
+            x += velocidadX;
+            y += velocidadY;
 
-                    // Rebote en los bordes de la pantalla
-                    if (x + 600 > screen.width || x < 0) {
-                        velocidadX *= -1;
-                    }
-                    if (y + 600 > screen.height || y < 0) {
-                        velocidadY *= -1;
-                    }
-
-                    // Mover la ventana emergente a la nueva posición
-                    ventana.moveTo(x, y);
-
-                    requestAnimationFrame(moverVentana); // Continuar moviendo la ventana
-                }
-
-                moverVentana(); // Iniciar el movimiento
-            } else {
-                alert("Permite las ventanas emergentes para ver el efecto.");
+            // Cambiar dirección al tocar los bordes del monitor
+            if (x + popupSize > window.innerWidth || x < 0) {
+                velocidadX *= -1; // Rebote horizontal
             }
+            if (y + popupSize > window.innerHeight || y < 0) {
+                velocidadY *= -1; // Rebote vertical
+            }
+
+            // Mueve el popup
+            popup.style.transform = `translate(${x}px, ${y}px)`;
+
+            requestAnimationFrame(moverVentana); // Sigue moviendo el popup
         }
 
-        // Abrir la ventana emergente después de cargar la página
-        abrirVentanaEmergente();
+        moverVentana(); // Iniciar el movimiento
     </script>
 </body>
 </html>
