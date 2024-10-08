@@ -35,7 +35,7 @@
         let velocidadX = (Math.random() > 0.5 ? 2 : -2); // Velocidad horizontal
         let velocidadY = (Math.random() > 0.5 ? 2 : -2); // Velocidad vertical
 
-        // Posicion inicial aleatoria
+        // Posición inicial aleatoria
         let x = Math.random() * (window.innerWidth - 600); // Posición horizontal inicial
         let y = Math.random() * (window.innerHeight - 600); // Posición vertical inicial
 
@@ -60,8 +60,7 @@
             }
 
             // Actualiza la posición del popup
-            popup.style.left = x + 'px';
-            popup.style.top = y + 'px';
+            window.moveTo(x, y); // Mueve la ventana emergente a la nueva posición
 
             requestAnimationFrame(moverVentana); // Continúa el movimiento de manera suave
         }
