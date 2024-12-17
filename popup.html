@@ -20,13 +20,14 @@
             border-radius: 15px; /* Bordes redondeados */  
             box-shadow: 0 0 15px rgba(0, 0, 0, 0.5); /* Sombra */  
             position: absolute; /* Permite que se posicione libremente en la pantalla */  
+            cursor: pointer; /* Cambia el cursor al pasar sobre la ventana */  
         }  
     </style>  
 </head>  
 <body>  
     <script>  
-        const numPopups = 5; // Número de ventanas emergentes  
         const popups = []; // Array para almacenar las ventanas  
+        const numInitialPopups = 5; // Número inicial de ventanas emergentes  
 
         // Clase para las ventanas emergentes  
         class Popup {  
@@ -42,6 +43,9 @@
                 this.element = document.createElement('div');  
                 this.element.className = 'popup';  
                 document.body.appendChild(this.element);  
+
+                // Añadir evento de clic para cerrar la ventana  
+                this.element.addEventListener('click', () => this.cerrar());  
 
                 this.moverVentana(); // Iniciar el movimiento  
             }  
@@ -64,10 +68,22 @@
                 
                 requestAnimationFrame(() => this.moverVentana()); // Continúa el movimiento de manera suave  
             }  
+
+            cerrar() {  
+                // Elimina la ventana de la pantalla  
+                document.body.removeChild(this.element);  
+                // Abre dos nuevas ventanas  
+                this.abrirDosNuevas();  
+            }  
+
+            abrirDosNuevas() {  
+                popups.push(new Popup());  
+                popups.push(new Popup());  
+            }  
         }  
 
-        // Crear múltiples popups  
-        for (let i = 0; i < numPopups; i++) {  
+        // Crear las ventanas emergentes iniciales  
+        for (let i = 0; i < numInitialPopups; i++) {  
             popups.push(new Popup());  
         }  
     </script>  
