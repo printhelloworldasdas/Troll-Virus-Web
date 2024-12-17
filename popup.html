@@ -10,7 +10,6 @@
             overflow: hidden;  
             background-color: transparent; /* Fondo transparente para mostrar la imagen */  
         }  
-
         .popup {  
             width: 50px; /* Tamaño reducido */  
             height: 50px; /* Tamaño reducido */  
@@ -26,65 +25,48 @@
 </head>  
 <body>  
     <script>  
-        const popups = []; // Array para almacenar las ventanas  
         const numInitialPopups = 5; // Número inicial de ventanas emergentes  
 
-        // Clase para las ventanas emergentes  
-        class Popup {  
-            constructor() {  
-                this.width = 50; // Ancho  
-                this.height = 50; // Alto  
-                this.x = Math.random() * (window.innerWidth - this.width); // Posición horizontal aleatoria  
-                this.y = Math.random() * (window.innerHeight - this.height); // Posición vertical aleatoria  
-                this.velX = (Math.random() > 0.5 ? 3 : -3); // Velocidad horizontal  
-                this.velY = (Math.random() > 0.5 ? 3 : -3); // Velocidad vertical  
+        // Función para crear una nueva ventana emergente  
+        function crearPopup() {  
+            const popup = window.open("", "_blank", "width=100,height=100");  
+            // Escribir contenido de la ventana emergente  
+            popup.document.write(`  
+                <html>  
+                <head>  
+                    <title>Popup</title>  
+                    <style>  
+                        body {  
+                            margin: 0;  
+                            display: flex;  
+                            justify-content: center;  
+                            align-items: center;  
+                            height: 100vh;  
+                            background-color: transparent; /* Fondo transparente */  
+                        }  
+                        img {  
+                            width: 50px; /* Tamaño de la imagen */  
+                            height: 50px; /* Tamaño de la imagen */  
+                        }  
+                    </style>  
+                </head>  
+                <body>  
+                    <img src="photos/Trollface.png" alt="Trollface" />  
+                </body>  
+                </html>  
+            `);  
 
-                // Crear el elemento de popup  
-                this.element = document.createElement('div');  
-                this.element.className = 'popup';  
-                document.body.appendChild(this.element);  
-
-                // Añadir evento de clic para cerrar la ventana  
-                this.element.addEventListener('click', () => this.cerrar());  
-
-                this.moverVentana(); // Iniciar el movimiento  
-            }  
-
-            moverVentana() {  
-                // Actualiza la posición  
-                this.x += this.velX;  
-                this.y += this.velY;  
-
-                // Cambia la dirección al llegar a los bordes de la pantalla  
-                if (this.x + this.width > window.innerWidth || this.x < 0) {  
-                    this.velX *= -1; // Rebote horizontal  
-                }  
-                if (this.y + this.height > window.innerHeight || this.y < 0) {  
-                    this.velY *= -1; // Rebote vertical  
-                }  
-
-                // Mueve la ventana a la nueva posición  
-                this.element.style.transform = `translate(${this.x}px, ${this.y}px)`;  
-                
-                requestAnimationFrame(() => this.moverVentana()); // Continúa el movimiento de manera suave  
-            }  
-
-            cerrar() {  
-                // Elimina la ventana de la pantalla  
-                document.body.removeChild(this.element);  
-                // Abre dos nuevas ventanas  
-                this.abrirDosNuevas();  
-            }  
-
-            abrirDosNuevas() {  
-                popups.push(new Popup());  
-                popups.push(new Popup());  
-            }  
+            // Manejar el evento de cierre de la ventana  
+            popup.onbeforeunload = function() {  
+                // Crear dos nuevas ventanas cuando se cierre  
+                crearPopup();  
+                crearPopup();  
+            };  
         }  
 
         // Crear las ventanas emergentes iniciales  
         for (let i = 0; i < numInitialPopups; i++) {  
-            popups.push(new Popup());  
+            crearPopup();  
         }  
     </script>  
 </body>  
