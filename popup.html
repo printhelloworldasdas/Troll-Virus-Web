@@ -16,10 +16,10 @@
         }  
 
         #popup {  
-            width: 300px; /* Nuevo ancho de la ventana emergente */  
-            height: 300px; /* Nueva altura de la ventana emergente */  
+            width: 200px; /* Cambia esto por el ancho de la imagen */  
+            height: 200px; /* Cambia esto por la altura de la imagen */  
             background-image: url('photos/Trollface.png'); /* Imagen Trollface */  
-            background-size: cover; /* Asegura que la imagen cubra todo el div */  
+            background-size: contain; /* Asegura que la imagen se ajuste correctamente */  
             background-position: center; /* Centra la imagen */  
             border-radius: 15px; /* Bordes redondeados */  
             box-shadow: 0 0 15px rgba(0, 0, 0, 0.5); /* Sombra */  
@@ -31,8 +31,8 @@
 
     <script>  
         // Posiciones y velocidades iniciales  
-        let x = Math.random() * (screen.width - 300); // Ajusta la posición horizontal inicial  
-        let y = Math.random() * (screen.height - 300); // Ajusta la posición vertical inicial  
+        let x = Math.random() * (screen.width - 200); // Ajusta la posición horizontal inicial  
+        let y = Math.random() * (screen.height - 200); // Ajusta la posición vertical inicial  
         let velocidadX = (Math.random() > 0.5 ? 3 : -3); // Velocidad horizontal  
         let velocidadY = (Math.random() > 0.5 ? 3 : -3); // Velocidad vertical  
 
@@ -43,10 +43,10 @@
             y += velocidadY; // Movimiento vertical  
 
             // Cambia la dirección al llegar a los bordes de la pantalla  
-            if (x + 300 > screen.width || x < 0) {  
+            if (x + 200 > screen.width || x < 0) {  
                 velocidadX *= -1; // Rebote horizontal  
             }  
-            if (y + 300 > screen.height || y < 0) {  
+            if (y + 200 > screen.height || y < 0) {  
                 velocidadY *= -1; // Rebote vertical  
             }  
 
