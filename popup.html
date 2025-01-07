@@ -16,7 +16,7 @@
     <script>  
         const numInitialPopups = 5; // Número inicial de ventanas emergentes  
         const moveDistance = 5; // Distancia de movimiento por cada "tick" del intervalo  
-        const popupSize = 100; // Tamaño de las ventanas para el cálculo de límites  
+        const popupSize = 100; // Tamaño de las ventanas para el cálculo de límites (100x100)  
 
         // Función para crear una nueva ventana emergente  
         function crearPopup() {  
@@ -37,8 +37,8 @@
                             background-color: transparent; /* Fondo transparente */  
                         }  
                         img {  
-                            width: 50px; /* Tamaño de la imagen */  
-                            height: 50px; /* Tamaño de la imagen */  
+                            width: 100px; /* Tamaño de la imagen, manteniendo el cuadrado */  
+                            height: 100px; /* Tamaño de la imagen, manteniendo el cuadrado */  
                         }  
                     </style>  
                 </head>  
@@ -53,7 +53,7 @@
             
             // Manejar el evento de cierre de la ventana  
             popup.onbeforeunload = function() {  
-                // Aquí podrías hacer algo al cerrar la ventana  
+                // No se abren más ventanas cuando se cierra  
             };  
         }  
 
