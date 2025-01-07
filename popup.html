@@ -56,12 +56,15 @@
                 </html>  
             `);  
 
-            // Manejar el evento de cierre de la ventana  
-            popup.onbeforeunload = function() {  
-                // Crear dos nuevas ventanas cuando se cierre  
-                crearPopup();  
-                crearPopup();  
-            };  
+            // Generar posiciones aleatorias para el popup  
+            const x = Math.random() * (window.screen.width - 100);  
+            const y = Math.random() * (window.screen.height - 100);  
+            popup.moveTo(x, y); // Mover el popup a la posición aleatoria  
+
+            // Manejar el evento de cierre de la ventana (sin crear nuevas popups)  
+            // popup.onbeforeunload = function() {   
+            //     crearPopup();   
+            // };  
         }  
 
         // Crear las ventanas emergentes iniciales  
