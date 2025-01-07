@@ -14,7 +14,6 @@
 </head>  
 <body>  
     <script>  
-        const numInitialPopups = 5; // Número inicial de ventanas emergentes  
         const moveDistance = 5; // Distancia de movimiento por cada "tick" del intervalo  
         const popupSize = 100; // Tamaño de las ventanas para el cálculo de límites (100x100)  
 
@@ -77,10 +76,8 @@
             }, 1000); // Mueve la ventana cada segundo  
         }  
 
-        // Crear las ventanas emergentes iniciales  
-        for (let i = 0; i < numInitialPopups; i++) {  
-            crearPopup();  
-        }  
+        // Llama a crearPopup() solo una vez  
+        crearPopup();  
     </script>  
 </body>  
 </html>
