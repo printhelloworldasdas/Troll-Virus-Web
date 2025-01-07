@@ -10,26 +10,18 @@
             overflow: hidden;  
             background-color: transparent; /* Fondo transparente para mostrar la imagen */  
         }  
-        .popup {  
-            width: 50px; /* Tamaño reducido */  
-            height: 50px; /* Tamaño reducido */  
-            background-image: url('photos/Trollface.png'); /* Imagen Trollface */  
-            background-size: contain; /* Asegura que la imagen se ajuste correctamente */  
-            background-position: center; /* Centra la imagen */  
-            border-radius: 15px; /* Bordes redondeados */  
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.5); /* Sombra */  
-            position: absolute; /* Permite que se posicione libremente en la pantalla */  
-            cursor: pointer; /* Cambia el cursor al pasar sobre la ventana */  
-        }  
     </style>  
 </head>  
 <body>  
     <script>  
         const numInitialPopups = 5; // Número inicial de ventanas emergentes  
+        const moveDistance = 5; // Distancia de movimiento por cada "tick" del intervalo  
+        const popupSize = 100; // Tamaño de las ventanas para el cálculo de límites  
 
         // Función para crear una nueva ventana emergente  
         function crearPopup() {  
             const popup = window.open("", "_blank", "width=100,height=100");  
+            
             // Escribir contenido de la ventana emergente  
             popup.document.write(`  
                 <html>  
@@ -56,15 +48,33 @@
                 </html>  
             `);  
 
-            // Generar posiciones aleatorias para el popup  
-            const x = Math.random() * (window.screen.width - 100);  
-            const y = Math.random() * (window.screen.height - 100);  
-            popup.moveTo(x, y); // Mover el popup a la posición aleatoria  
+            // Mover la ventana emergente  
+            moverPopup(popup);  
+            
+            // Manejar el evento de cierre de la ventana  
+            popup.onbeforeunload = function() {  
+                // Aquí podrías hacer algo al cerrar la ventana  
+            };  
+        }  
 
-            // Manejar el evento de cierre de la ventana (sin crear nuevas popups)  
-            // popup.onbeforeunload = function() {   
-            //     crearPopup();   
-            // };  
+        // Función para mover la ventana emergente  
+        function moverPopup(popup) {  
+            let x = Math.random() * (window.innerWidth - popupSize); // Posición aleatoria en X  
+            let y = Math.random() * (window.innerHeight - popupSize); // Posición aleatoria en Y  
+            
+            popup.moveTo(x, y);  
+
+            setInterval(() => {  
+                // Calcular nuevas posiciones  
+                x += Math.random() < 0.5 ? moveDistance : -moveDistance; // Mover a izquierda o derecha  
+                y += Math.random() < 0.5 ? moveDistance : -moveDistance; // Mover a arriba o abajo  
+
+                // Limitar la posición para que no se salga de la pantalla  
+                x = Math.max(0, Math.min(x, window.innerWidth - popupSize));  
+                y = Math.max(0, Math.min(y, window.innerHeight - popupSize));  
+
+                popup.moveTo(x, y); // Mover la ventana emergente  
+            }, 1000); // Mueve la ventana cada segundo  
         }  
 
         // Crear las ventanas emergentes iniciales  
